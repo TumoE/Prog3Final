@@ -98,7 +98,7 @@ function matrixGenerator(matrixSize, grass, grassEater, predator, alien, bomb) {
         }
     }
 }
-matrixGenerator(20, 10, 1 , 0 ,0);
+matrixGenerator(20, 10, 1 , 1 ,0);
 //! Creating MATRIX -- END
 
 
@@ -194,6 +194,9 @@ function game() {
         bombCounter: bombCount,
         rockCounter: rockCount,
         weatherIndex: weather
+        //grassEaterArrRev: grassEaterArr,
+       // predatorArrRev: predatorArr
+
     }
 
     //! Send data over the socket to clients who listens "data"
@@ -201,33 +204,10 @@ function game() {
 }
 
 
-function reverseFunc(){
-    var x;
-    x = grassEaterArr;
-    grassEaterArr = predatorArr;
-    predatorArr = x;
-    console.log("LAva");
-    for (var i in grassEaterArr) {
-       grassEaterArr[i].index = 3;
-    }
-    for (var i in predatorArr) {
-        predatorArr[i].index = 2;
-    }
-    for (let y = 0; y < 20; y++) {
-        for (let x = 0; x < 20; x++) {
-            if(matrix[y][x] == 2)
-                    {
-                     matrix[y][x] = 3;
-                    }
-            else if (matrix[y][x] == 3)
-                    {
-                    matrix[y][x] = 2;
-                    }      
-        }
-    }
-}
 
-/*function RandomBombMatrix() {
+
+if(weather == 3){
+function RandomBombMatrix() {
     var x = Math.floor(Math.random() * matrix.length);
     var y = Math.floor(Math.random() * matrix.length);
     matrix[y][x] = 5;
@@ -249,7 +229,8 @@ function RandomAllenMatrix() {
     //console.log(alienCount);
     setTimeout(RandomAllenMatrix, 20000);
 }
-RandomAllenMatrix();*/
+RandomAllenMatrix();
+}
 
 function weatherChange(){
     weather++;
@@ -258,5 +239,7 @@ function weatherChange(){
     setTimeout(weatherChange, 10000);
 }
 weatherChange();
+
+
 
 setInterval(game, 1000)

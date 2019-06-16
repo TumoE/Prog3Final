@@ -1,3 +1,6 @@
+//grassEaterArr = [];
+//predatorArr = [];
+matrix = [];
 
 //! Setup function fires automatically
 function setup() {
@@ -6,7 +9,8 @@ function setup() {
 
     var side = 30;
 
-    var matrix = [];
+    
+
 
     var ground = loadImage('img/Ground.png');
     var bomb = loadImage('img/bomb.png');
@@ -15,7 +19,6 @@ function setup() {
     var wolf = loadImage('img/Wolf.png');
     var alien = loadImage('img/alien.png');
     var rock = loadImage('img/Rock.png');
-
 
     //! Getting DOM objects (HTML elements)
     let grassCountElement = document.getElementById('grassCount');
@@ -39,10 +42,15 @@ function setup() {
         bombCountElement.innerText = data.bombCounter;
         rockCountElement.innerText = data.rockCounter;
 
+
+        //grassEaterArr = data.grassEaterArrRev;
+        //predatorArr = data.predatorArrRev;
+
+
         //! Every time it creates new Canvas woth new matrix size
         createCanvas(matrix[0].length * side, matrix.length * side)
         //! clearing background by setting it to new grey color
-        background('#acacac');
+        background('green');
         //! Draw grassCount and grassEaterCount to HTML (use DOM objects to update information, yes, and use .innerText <- function)
 
         //! Drawing and coloring RECTs
@@ -81,11 +89,32 @@ function setup() {
                 }
             }
         }
-         if(data.weatherIndex == 0 ) { Body.style.background = "grey"; console.log("First")}
-         if(data.weatherIndex == 1 ){ Body.style.background = "lightgreen";  console.log("second")}
-         if(data.weatherIndex == 2 ){ Body.style.background = "lightorange";  console.log("thirt")}
-         if(data.weatherIndex == 3 ){ Body.style.background = "gold";  console.log("fourth")}
+         if(data.weatherIndex == 0 ) Body.style.background = "#cecdc6"; 
+         if(data.weatherIndex == 1 ) Body.style.background = "#b8e08d";
+         if(data.weatherIndex == 2 ) Body.style.background = "#d8af56";
+         if(data.weatherIndex == 3 ) Body.style.background = "#c18400"; 
 
-        
     }
+
 }
+
+    let ReverseButton = document.getElementById("Rev");
+    ReverseButton.addEventListener("click",reverseFunc());
+    function reverseFunc(){
+        var x;
+        x = grassEaterArr;
+        grassEaterArr = predatorArr;
+        predatorArr = x;
+        for (let y = 0; y < matrix.length; y++) {
+            for (let x = 0; x < matrix.length; x++) {
+                        if(matrix[y][x] == 2)
+                        {
+                         matrix[y][x] = 3;
+                        }
+                        else if (matrix[y][x] == 3)
+                        {
+                        matrix[y][x] = 2;
+                        }      
+            }
+        }
+    }

@@ -6,31 +6,17 @@ module.exports = class Rock extends LiveForm {
 
     constructor(x, y) {
         super(x, y);
-       // this.time = 10000;
+       
     }
-    getNewCoordinates() {
-        this.directions = [
-            [this.x - 1, this.y - 1],
-            [this.x, this.y - 1],
-            [this.x + 1, this.y - 1],
-            [this.x - 1, this.y],
-            [this.x + 1, this.y],
-            [this.x - 1, this.y + 1],
-            [this.x, this.y + 1],
-            [this.x + 1, this.y + 1],
-            [this.x - 2, this.y - 2],
-            [this.x - 1, this.y - 2],
-            [this.x + 2, this.y - 2],
-            [this.x - 2, this.y - 1],
-            [this.x + 2, this.y + 1],
-            [this.x - 2, this.y + 2],
-            [this.x + 1, this.y + 2],
-            [this.x + 2, this.y + 2],
-        ];
+   Crack(){
+        matrix[this.y][this.x] = 0;
+        for (var i in rockArr) {
+        if (this.x == rockArr[i].x && this.y == rockArr[i].y) {
+            rockArr.splice(i, 1);
+            break;
+        }
     }
-    chooseCell(character) {
-        this.getNewCoordinates();
-        return super.chooseCell(character);
-    }
+   }
+   
 }
 
