@@ -6,7 +6,7 @@ module.exports = class Bomb extends LiveForm {
 
     constructor(x, y) {
         super(x, y);
-        this.time = 10;
+        this.time = 10000;
     }
     getNewCoordinates() {
         this.directions = [
@@ -35,30 +35,43 @@ module.exports = class Bomb extends LiveForm {
 
 
     Explosion() {
-
-        var newCell = random(this.chooseCell(1));
+        var z = Math.floor(Math.random() * 2);
+        var newCell = random(this.chooseCell(z));
         if (newCell) {
             var newX = newCell[0];
             var newY = newCell[1];
 
             matrix[this.y][this.x] = 3;
-            var pr = new Predator(this.x, this.y, 3);
+            var pr = new Predator(this.x, this.y);
             predatorArr.push(pr);
-
+            predatorCount++;
             matrix[newY][newX] = 0;
 
             for (var i in bombArr) {
                 bombArr.splice(i, 1);
                 break;
             }
+            this.time = 0;
+           // console.log("Boom");
         }
     }
 
+    Timeminus(){
+        for (var i = 10000; i >= 0; i--) {
+            this.time--;
+            if(this.time <= 0){
+                this.Explosion();
+                break;
+            }
+        }
 
-    Timer() {
-        this.time--;
+    }
+   /* Timer() {
+    
         if (this.time <= 0) {
             this.Explosion();
+           // console.log("Boom")
         }
-    }
+       
+    }*/
 }

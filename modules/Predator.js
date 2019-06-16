@@ -67,25 +67,31 @@ module.exports = class Predator extends LiveForm{
                 this.y = newY;
                 this.x = newX;
                 this.energy += 2;
+
+                if(this.energy > 10){
+                    this.mul();
+                }
     
-            }else{
+            }else
+            {
                 if(this.energy >= 0){
-                this.move();
+                    this.move();
                 }else{
                     this.die();
-                }
+                    }
             }
         }
     mul() {
-        
-        var newCell = random(this.chooseCell(0));
-        if (this.energy >= 24 && newCell) {
+        let emptyCells = this.chooseCell(0);
+        let newCell = random(emptyCells);
+        if (newCell) {
             let x = newCell[0];
             let y = newCell[1];
-            matrix[y][x] = 3;
+            matrix[y][x] = 2;
             let predator = new Predator(x, y);
             predatorArr.push(predator);
-            this.energy = 8;
+            this.energy = 5;
+            predatorCount++;
         }
     }
    die() 

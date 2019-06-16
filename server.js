@@ -5,6 +5,7 @@ GrassEater = require("./modules/GrassEater.js");
 Predator = require("./modules/Predator.js")
 Alien = require("./modules/Alien.js");
 Bomb = require("./modules/Bomb.js");
+Rock = require("./modules/Rock.js");
 random = require('./modules/random');
 //! Requiring modules  --  END
 
@@ -15,17 +16,20 @@ grassEaterArr = [];
 predatorArr = [];
 alienArr = [];
 bombArr = [];
+rockArr = [];
 matrix = [];
+
+//! Setting global arrays  -- END
+
 
  grassHashiv = 0;
  grassEaterCount = 0;
  predatorCount = 0;
  alienCount = 0;
  bombCount = 0;
+ rockCount = 0;
 
-//! Setting global arrays  -- END
-
-
+ weather = 0;
 
 
 //! Creating MATRIX -- START
@@ -61,8 +65,40 @@ function matrixGenerator(matrixSize, grass, grassEater, predator, alien, bomb) {
         let customY = Math.floor(random(matrixSize));
         matrix[customY][customX] = 5;
     }
+    for (let i = 0; i < 2; i++) {
+        let customX = Math.floor(random(matrixSize));
+        let customY = Math.floor(random(matrixSize));
+        matrix[customY][customX] = 6;
+        if(customY == 0 && customX == 0)
+        {
+        matrix[customY][customX+1] = 6;
+        matrix[customY+1][customX] = 6;
+        matrix[customY+1][customX+1] = 6; 
+        }else if(customX == matrixSize-1 && customY == 0)
+        {
+        matrix[customY][customX-1] = 6;
+        matrix[customY+1][customX] = 6;
+        matrix[customY+1][customX-1] = 6; 
+        }else if(customX == 0 && customY == matrixSize-1)
+        {
+        matrix[customY-1][customX] = 6;
+        matrix[customY-1][customX+1] = 6;
+        matrix[customY][customX+1] = 6; 
+        }
+        else if(customX == matrixSize-1 && customY == matrixSize-1)
+        {
+        matrix[customY-1][customX] = 6;
+        matrix[customY-1][customX-1] = 6;
+        matrix[customY][customX-1] = 6; 
+        }
+        else if(customX < matrixSize-2 && customY < matrixSize-2 && customY > 1 && customX > 1){
+        matrix[customY-1][customX] = 6;
+        matrix[customY-1][customX-1] = 6;
+        matrix[customY][customX-1] = 6; 
+        }
+    }
 }
-matrixGenerator(20, 10, 1 , 5 ,5);
+matrixGenerator(20, 10, 1 , 0 ,0);
 //! Creating MATRIX -- END
 
 
@@ -105,6 +141,11 @@ function creatingObjects() {
                 bombArr.push(bomb);
                 bombCount++;
             }
+            else if(matrix[y][x] == 6){
+                var rock = new Rock(x, y);
+                rockArr.push(rock);
+                rockCount++;
+            }
         }
     }
 }
@@ -124,20 +165,35 @@ function game() {
     //if(predatorArr[0] !== undefined){
         for (var i in predatorArr) {
             predatorArr[i].eat();
-            predatorArr[i].mul();
+           // predatorArr[i].mul();
         }
   //  }
     if(alienArr[0] !== undefined){
         for (var i in alienArr) {
             alienArr[i].eat();
-            alienArr[i].CountDown();
+           // alienArr[i].CountDown();
         }
+    }
+
+    if(bombArr[0] !== undefined){
+
+    for (var i in bombArr) 
+    {
+        bombArr[i].Timeminus();
+    }
+
     }
 
     //! Object to send
     let sendData = {
         matrix: matrix,
-        grassCounter: grassHashiv
+        grassCounter: grassHashiv,
+        grassEaterCounter: grassEaterCount,
+        predatorCounter: predatorCount,
+        alienCounter: alienCount,
+        bombCounter: bombCount,
+        rockCounter: rockCount,
+        weatherIndex: weather
     }
 
     //! Send data over the socket to clients who listens "data"
@@ -145,5 +201,62 @@ function game() {
 }
 
 
+function reverseFunc(){
+    var x;
+    x = grassEaterArr;
+    grassEaterArr = predatorArr;
+    predatorArr = x;
+    console.log("LAva");
+    for (var i in grassEaterArr) {
+       grassEaterArr[i].index = 3;
+    }
+    for (var i in predatorArr) {
+        predatorArr[i].index = 2;
+    }
+    for (let y = 0; y < 20; y++) {
+        for (let x = 0; x < 20; x++) {
+            if(matrix[y][x] == 2)
+                    {
+                     matrix[y][x] = 3;
+                    }
+            else if (matrix[y][x] == 3)
+                    {
+                    matrix[y][x] = 2;
+                    }      
+        }
+    }
+}
+
+/*function RandomBombMatrix() {
+    var x = Math.floor(Math.random() * matrix.length);
+    var y = Math.floor(Math.random() * matrix.length);
+    matrix[y][x] = 5;
+    var bo = new Bomb(x, y);
+    bombArr.push(bo)
+    bombCount++;
+    setTimeout(RandomBombMatrix, 15000);
+}
+RandomBombMatrix();
+
+
+function RandomAllenMatrix() {
+    var x = Math.floor(Math.random() * matrix.length);
+    var y = Math.floor(Math.random() * matrix.length);
+    matrix[y][x] = 4;
+    var al = new Alien(x, y);
+    alienArr.push(al);
+    alienCount++;
+    //console.log(alienCount);
+    setTimeout(RandomAllenMatrix, 20000);
+}
+RandomAllenMatrix();*/
+
+function weatherChange(){
+    weather++;
+    if(weather > 3) weather = 0;
+    console.log(weather);
+    setTimeout(weatherChange, 10000);
+}
+weatherChange();
 
 setInterval(game, 1000)
