@@ -267,3 +267,69 @@ weatherChange();
 
 
 setInterval(game, 1000)
+
+
+
+function reverseFunc(){
+    var x = [];
+    x = grassEaterArr;
+    grassEaterArr = predatorArr;
+    predatorArr = x;
+    for (let y = 0; y < matrix.length; y++) {
+        for (let x = 0; x < matrix.length; x++) {
+                    if(matrix[y][x] == 2)
+                    {
+                     matrix[y][x] = 3;
+                    }
+                    else if (matrix[y][x] == 3)
+                    {
+                    matrix[y][x] = 2;
+                    }      
+        }
+    }
+}
+
+function removeRocks(){
+    for (let y = 0; y < matrix.length; y++) {
+        for (let x = 0; x < matrix.length; x++) {
+                    if(matrix[y][x] == 6)
+                    {
+                     matrix[y][x] = 0;
+                     for(var i in rockArr){
+                        rockArr.splice(i, 1);
+                     }
+                    }
+        }
+    }
+}
+
+function AddRandomGrassEater(){
+    let NewX = Math.floor(random(20));
+    let NewY = Math.floor(random(20));
+
+     matrix[NewX][NewY] = 2;
+     let NewGrassEater = new GrassEater(NewX,NewY);
+     grassEaterArr.push(NewGrassEater);
+}
+
+function addNewRock(){
+    let NewX = Math.floor(random(20));
+    let NewY = Math.floor(random(20));
+     matrix[NewX][NewY] = 6;
+     let NewRock = new Rock(NewX,NewY);
+     rockArr.push(NewRock);
+}
+
+// function RemoveWithMouse(MouseObj){
+//     console.log(MouseObj);
+//   // matrix[MouseObj.X][MouseObj.Y] = 0;
+// }
+
+io.on('connection', function (socket) {
+    socket.on("matrixy pokhi",reverseFunc)
+    socket.on("RemoveAllRocks",removeRocks)
+    socket.on("AddRandomGrassEater",AddRandomGrassEater)
+    socket.on("AddNewRock",addNewRock)
+   // socket.on("RemoveWithMouse",RemoveWithMouse)
+ });
+ 

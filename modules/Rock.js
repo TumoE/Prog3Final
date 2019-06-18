@@ -12,9 +12,9 @@ module.exports = class Rock extends LiveForm {
         matrix[this.y][this.x] = 0;
 
         for (let i in rockArr) {
-            if (rockArr[i].x == this.x && rockArr[i].y == this.y) {
+           // if (rockArr[i].x == this.x && rockArr[i].y == this.y) {
                 rockArr.splice(i, 1)
-            }
+           // }
         }
    }
 }

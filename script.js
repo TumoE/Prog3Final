@@ -96,25 +96,39 @@ function setup() {
 
     }
 
+    let ReverseButton = document.getElementById("Rev");
+    ReverseButton.addEventListener("click", rev);
+
+    let RemoveRocksButton = document.getElementById("RemoveRocks");
+    RemoveRocksButton.addEventListener("click", RemoveRocks);
+    
+    let SpawnRocks = document.getElementById("SpawnRocks");
+    SpawnRocks.addEventListener("click", AddRock);
+
+    let GrassEaterAdderButton = document.getElementById("GrassEaterAdder");
+    GrassEaterAdderButton.addEventListener("click", AddGrassEater);
+
+    function rev(){
+        socket.emit("matrixy pokhi");
+    }
+    function RemoveRocks(){
+        socket.emit("RemoveAllRocks");
+    }
+    function AddGrassEater(){
+        socket.emit("AddRandomGrassEater");
+    }
+    function AddRock(){
+        socket.emit("AddNewRock");
+    }
+
+    // this.mouseClicked = function() {
+    //     var MouseObj = {Y:mouseY,X:mouseX}
+    //     socket.emit("RemoveWithMouse",MouseObj);
+    //   }
 }
 
-    let ReverseButton = document.getElementById("Rev");
-    ReverseButton.addEventListener("click",reverseFunc());
-    function reverseFunc(){
-        var x;
-        x = grassEaterArr;
-        grassEaterArr = predatorArr;
-        predatorArr = x;
-        for (let y = 0; y < matrix.length; y++) {
-            for (let x = 0; x < matrix.length; x++) {
-                        if(matrix[y][x] == 2)
-                        {
-                         matrix[y][x] = 3;
-                        }
-                        else if (matrix[y][x] == 3)
-                        {
-                        matrix[y][x] = 2;
-                        }      
-            }
-        }
-    }
+
+
+
+
+
