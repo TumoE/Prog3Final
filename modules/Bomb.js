@@ -6,7 +6,7 @@ module.exports = class Bomb extends LiveForm {
 
     constructor(x, y) {
         super(x, y);
-        this.time = 10000;
+        this.time = 4000;
     }
     getNewCoordinates() {
         this.directions = [
@@ -52,12 +52,12 @@ module.exports = class Bomb extends LiveForm {
                 break;
             }
             this.time = 0;
-           // console.log("Boom");
+            console.log("Boom");
         }
     }
 
     Timeminus(){
-        for (var i = 10000; i >= 0; i--) {
+        for (var i = 4000; i >= 0; i--) {
             this.time--;
             if(this.time <= 0){
                 this.Explosion();

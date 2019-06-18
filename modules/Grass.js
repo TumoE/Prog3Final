@@ -24,11 +24,15 @@ module.exports = class Grass extends LiveForm {
         return super.chooseCell(character);
     }
     mul() {
+        var MaxMultiply;
+        if(weather == 0 || weather == 4){ MaxMultiply = 5;}
+        else MaxMultiply = 2;
+
         this.multiply++;
         let emptyCells = this.chooseCell(0);
         let newCell = random(emptyCells);
 
-        if (newCell && this.multiply >= 2) {
+        if (newCell && this.multiply >= MaxMultiply) {
             grassHashiv++;
             let x = newCell[0];
             let y = newCell[1];
@@ -39,3 +43,7 @@ module.exports = class Grass extends LiveForm {
         }
     }
 }
+// 0 dzmer
+// 1 garun 
+// 2 amar 
+// 4 ashun

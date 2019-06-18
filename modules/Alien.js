@@ -7,7 +7,7 @@ module.exports = class Allen extends LiveForm {
 
     constructor(x, y) {
         super(x, y);
-        this.time = 20000;
+        this.time = 8000;
     }
 
     getNewCoordinates() {
@@ -83,7 +83,7 @@ module.exports = class Allen extends LiveForm {
                 alienArr.splice(i,1);           
                 break;
             }
-           // console.log("EndGame");
+           console.log("EndGame");
        // this.time =0;
     }
 
@@ -100,12 +100,12 @@ module.exports = class Allen extends LiveForm {
 
             this.y = newY;
             this.x = newX;
-            this.CountDown();
+            
         }
-
+        this.CountDown();
     }
     CountDown(){
-         for (var i = 20000; i >= 0; i--) {
+         for (var i = 8000; i >= 0; i--) {
             this.time--;
             if(this.time <= 0){
                 this.die();

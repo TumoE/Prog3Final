@@ -31,7 +31,6 @@ module.exports = class Predator extends LiveForm{
         var z = Math.round(Math.random()) ;
         var newCell = random(this.chooseCell(z));
 
-
         if (newCell) {
             var newX = newCell[0];
             var newY = newCell[1];
@@ -50,6 +49,9 @@ module.exports = class Predator extends LiveForm{
     }
         eat() {
             var newCell = random(this.chooseCell(3));
+            var EnergyPlus;
+            if(weather == 4 || weather == 0){ EnergyPlus = 1;}
+            else EnergyPlus = 2;
 
             if (newCell) {
                 var newX = newCell[0];
@@ -90,6 +92,7 @@ module.exports = class Predator extends LiveForm{
             matrix[y][x] = 2;
             let predator = new Predator(x, y);
             predatorArr.push(predator);
+
             this.energy = 5;
             predatorCount++;
         }

@@ -29,11 +29,11 @@ matrix = [];
  bombCount = 0;
  rockCount = 0;
 
- weather = 0;
+ weather = -1;
 
 
 //! Creating MATRIX -- START
-function matrixGenerator(matrixSize, grass, grassEater, predator, alien, bomb) {
+function matrixGenerator(matrixSize, grass, grassEater, predator, alien, bomb,rock) {
     for (let i = 0; i < matrixSize; i++) {
         matrix[i] = [];
         for (let o = 0; o < matrixSize; o++) {
@@ -65,7 +65,7 @@ function matrixGenerator(matrixSize, grass, grassEater, predator, alien, bomb) {
         let customY = Math.floor(random(matrixSize));
         matrix[customY][customX] = 5;
     }
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < rock; i++) {
         let customX = Math.floor(random(matrixSize));
         let customY = Math.floor(random(matrixSize));
         matrix[customY][customX] = 6;
@@ -98,7 +98,7 @@ function matrixGenerator(matrixSize, grass, grassEater, predator, alien, bomb) {
         }
     }
 }
-matrixGenerator(20, 10, 1 , 1 ,0);
+matrixGenerator(20, 15,10, 3,0,0,2);
 //! Creating MATRIX -- END
 
 
@@ -171,19 +171,26 @@ function game() {
     if(alienArr[0] !== undefined){
         for (var i in alienArr) {
             alienArr[i].eat();
-           // alienArr[i].CountDown();
+           //alienArr[i].CountDown();
         }
     }
 
     if(bombArr[0] !== undefined){
-
     for (var i in bombArr) 
     {
         bombArr[i].Timeminus();
     }
-
     }
 
+    if(rockArr[0] !== undefined){
+    for (var i in rockArr) 
+    {
+        if(weather >= 0)
+        {
+        rockArr[i].Crack();
+        }
+    }
+    }
     //! Object to send
     let sendData = {
         matrix: matrix,
@@ -206,31 +213,48 @@ function game() {
 
 
 
-if(weather == 3){
+
 function RandomBombMatrix() {
+    if(weather == 1 || weather == 2){
     var x = Math.floor(Math.random() * matrix.length);
     var y = Math.floor(Math.random() * matrix.length);
     matrix[y][x] = 5;
     var bo = new Bomb(x, y);
     bombArr.push(bo)
     bombCount++;
-    setTimeout(RandomBombMatrix, 15000);
+    }
+    setTimeout(RandomBombMatrix, 5000);
 }
 RandomBombMatrix();
 
 
 function RandomAllenMatrix() {
+    if(weather == 1 || weather == 2){
     var x = Math.floor(Math.random() * matrix.length);
     var y = Math.floor(Math.random() * matrix.length);
     matrix[y][x] = 4;
     var al = new Alien(x, y);
     alienArr.push(al);
     alienCount++;
-    //console.log(alienCount);
-    setTimeout(RandomAllenMatrix, 20000);
+    }      
+    setTimeout(RandomAllenMatrix, 5000);
 }
 RandomAllenMatrix();
+
+
+
+
+function RandomRockMatrix() {
+    if(weather == 0){
+    var x = Math.floor(Math.random() * matrix.length);
+    var y = Math.floor(Math.random() * matrix.length);
+    matrix[y][x] = 6;
+    }
+    setTimeout(RandomRockMatrix, 5000);
 }
+RandomRockMatrix();
+
+
 
 function weatherChange(){
     weather++;
