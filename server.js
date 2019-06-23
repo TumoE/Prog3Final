@@ -212,6 +212,8 @@ function game() {
 
 
 
+setInterval(game, 1000)
+
 
 
 function RandomBombMatrix() {
@@ -265,11 +267,6 @@ function weatherChange(){
 weatherChange();
 
 
-
-setInterval(game, 1000)
-
-
-
 function reverseFunc(){
     var x = [];
     x = grassEaterArr;
@@ -288,7 +285,6 @@ function reverseFunc(){
         }
     }
 }
-
 function removeRocks(){
     for (let y = 0; y < matrix.length; y++) {
         for (let x = 0; x < matrix.length; x++) {
@@ -302,7 +298,6 @@ function removeRocks(){
         }
     }
 }
-
 function AddRandomGrassEater(){
     let NewX = Math.floor(random(20));
     let NewY = Math.floor(random(20));
@@ -311,7 +306,6 @@ function AddRandomGrassEater(){
      let NewGrassEater = new GrassEater(NewX,NewY);
      grassEaterArr.push(NewGrassEater);
 }
-
 function addNewRock(){
     let NewX = Math.floor(random(20));
     let NewY = Math.floor(random(20));

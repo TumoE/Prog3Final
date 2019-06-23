@@ -1,6 +1,7 @@
 <html>
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -22,6 +23,7 @@
         body {
             font-family: 'Noto Sans', sans-serif !important;
         }
+
     </style>
 </head>
 
@@ -32,7 +34,7 @@
                 <h1>Ծրագրավորում III Երևան</h1>
             </tr>
             <tr>
-                <h1>Անուն Ազգանուն</h1>
+                <h1>Էդուարդ Սուխուդյան</h1>
             </tr>
             <tr>
                 <th scope="col">#</th>
@@ -43,52 +45,60 @@
         </thead>
         <tbody>
             <tr>
+                <th scope="row">0</th>
+                <td scope="row"><img src="img/Ground.png" width="50px" height="50px"></td>
+                <td>"Հող"</td>
+                <td></td>
+            </tr>
+            <tr>
                 <th scope="row">1</th>
-                <td scope="row" style="background-color:green;"></td>
-                <td>Կանաչը խոտն է, որը բազմանում է 4 ցիկլը մեկ,մահանում է երբ նրան ուտում է խոտակերը, կամ այրում է
-                    կրակը, կամ նրան կոխկրտում է գիշատիչը</td>
+                <td scope="row"><img src="img/Grass.png" width="50px" height="50px"></td>
+                <td> "խոտ", որը բազմանում է 2 ցիկլը մեկ ամռանը և գարնանը, իսկ ձմռանը և աշնանը 5 ցիկլը մեկ ,մահանում է երբ նրան ուտում է խոտակերը կամ այլմուլորակայինը։</td>
                 <td id="grassCount"></td>
             </tr>
             <tr>
                 <th scope="row">2</th>
-                <td scope="row" style="background-color:orange;"></td>
-                <td>Դեղինը խոտակերն է, որը բազմանում է 13 հատ խոտ ուտելուց հետո և մահանում է որոշ ժամանակ չուտելուց հետո, կամ
-                    երբ նրան ուտում է գիշատիչը, կամ երբ նրան այրում է կրակը:</td>
+                <td scope="row"><img src="img/Cow.png" width="50px" height="50px"></td>
+                <td>"Կով",որը բազմանում է ամռնաը և գարնանը 7 հատ խոտ ուտելուց հետո ,իսկ ձմռանը և աշնանը 13 հատ խոտ ուտելուց հետո , մահանում է որոշ ժամանակ չուտելուց հետո, կամ
+                    երբ նրան ուտում է գիշատիչը կամա այլմուլորակայինը , Քայլում է Մոտակա 8 վանդակներում :</td>
                 <td id="grassEaterCount"></td>
             </tr>
              <tr>
                 <th scope="row">3</th>
-                <td scope="row" style="background-color:orange;"></td>
-                <td>Գիշատիչն է,Քայլում է Մոտակա 8 վանդակներում,շարժվելիս էներգիան քչանում է 1֊ով, Ուտում Խոտակերին, մոտակա 8 վանդակներում, էներգիան ավելանում է 2֊ով,Բազմանում է մոտակա դատարկ տարածքներում, երբ էներգիան 10֊ից ավել է</td>
+                <td scope="row"><img src="img/Wolf.png" width="50px" height="50px"></td>
+                <td>Գիշատիչն է,Քայլում է Մոտակա 8 վանդակներում,շարժվելիս էներգիան քչանում է 1֊ով, Ուտում Խոտակերին մոտակա 8 վանդակներում, որից հետո էներգիան ավելանում է 2-ով,եթե ամառ կամ գարուն է ,իսկ եթե փմեռ կամ աշուն՝ 1-ով ,Բազմանում է մոտակա դատարկ տարածքներում, երբ էներգիան 10֊ից ավել է, նրակ կարող է միայն ուտել այլմուլորակայինը։</td>
                 <td id="predatorCount"></td>
             </tr>
             <tr>
                 <th scope="row">4</th>
-                <td scope="row" style="background-color:orange;"></td>
-                <td>Ալյմոլորակայինն է,Քայլում է Մոտակա 16 վանդակներում,շարժվելիս էներգիան չի քչանում , Ուտում ամեն ինչ, մոտակա 16 վանդակներում,ծնվում է 8 վարկյան հետո, Սատկում է որոշ ժամանակ հետո</td>
+                <td scope="row"><img src="img/alien.png" width="50px" height="50px"></td>
+                <td>"Ալյմոլորակային",ծնվում է գարնանը և ամռանը ամեն 5 վարկյանը մեկ ,Քայլում է Մոտակա 16 վանդակներում,շարժվելիս էներգիան չի քչանում , Ուտում ամեն ինչ, մոտակա 16 վանդակներում, Սատկում է որոշ ժամանակ հետո</td>
                 <td id="alienCount"></td>
             </tr>
             <tr>
                 <th scope="row">5</th>
-                <td scope="row" style="background-color:orange;"></td>
-                <td>Ալյմոլորակայինն է,Քայլում է Մոտակա 16 վանդակներում,շարժվելիս էներգիան չի քչանում , Ուտում ամեն ինչ, մոտակա 16 վանդակներում,ծնվում է 8 վարկյան հետո, Սատկում է որոշ ժամանակ հետո</td>
+                <td scope="row"><img src="img/bomb.png" width="50px" height="50px"></td>
+                <td>"Ռումբ",ծնվում է գարնանը և ամռանը ամեն 5 վարկյանը մեկ,Չի քայլում,Պայթում է ծնվելուց 8 վարկյան հետո,առաջացնելով գիշատիչ մոտակա 16 վանդակներից մեկում։</td>
                 <td id="bombCount"></td>
             </tr>
             <tr>
                 <th scope="row">6</th>
-                <td scope="row" style="background-color:orange;"></td>
-                <td>Ալյմոլորակայինն է,Քայլում է Մոտակա 16 վանդակներում,շարժվելիս էներգիան չի քչանում , Ուտում ամեն ինչ, մոտակա 16 վանդակներում,ծնվում է 8 վարկյան հետո, Սատկում է որոշ ժամանակ հետո</td>
+                <td scope="row"><img src="img/Rock.png" width="50px" height="50px"></td>
+                <td>"Քար", Առաջանում է միայն ձմռանը, խանգարելով մնացածի տեղաշարժմանը։</td>
                 <td id="rockCount"></td>
             </tr>
 
         </tbody>
     </table>
 
-    <button type="button" id="Rev">Reverse</button>
-    <button type="button" id="RemoveRocks">RemoveRocks</button>
-    <button type="button" id="GrassEaterAdder">AddGrassEater</button>
-    <button type="button" id="SpawnRocks">SpawnRocks</button>
+    <div  class="table table-hover" style="margin-left: 100">
+    <button type="button" id="Rev" style="border-radius: 50px">Reverse</button>
+    <button type="button" id="RemoveRocks" style="border-radius: 50px">RemoveRocks</button>
+    <button type="button" id="GrassEaterAdder" style="border-radius: 50px">AddGrassEater</button>
+    <button type="button" id="SpawnRocks" style="border-radius: 50px">SpawnRocks</button>
+    </div>
 
+    <h2 id="WeatherH2" class="table table-hover" style="text-align: right; margin-left: -100px;"></h2>
 
     <script src="p5.js"></script>
     <script src="/socket.io/socket.io.js"></script>

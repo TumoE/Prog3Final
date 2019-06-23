@@ -28,6 +28,7 @@ function setup() {
     let bombCountElement = document.getElementById('bombCount');
     let rockCountElement = document.getElementById('rockCount');
     let Body = document.body;
+    let WeatherTxT = document.getElementById('WeatherH2');
     //! adding socket listener on "data" <-- name, after that fire 'drawCreatures' function 
     
     socket.on("data", drawCreatures);
@@ -89,10 +90,10 @@ function setup() {
                 }
             }
         }
-         if(data.weatherIndex == 0 ) Body.style.background = "#cecdc6"; 
-         if(data.weatherIndex == 1 ) Body.style.background = "#b8e08d";
-         if(data.weatherIndex == 2 ) Body.style.background = "#d8af56";
-         if(data.weatherIndex == 3 ) Body.style.background = "#c18400"; 
+         if(data.weatherIndex == 0 ) { Body.style.background = "#757a9f"; WeatherTxT.innerText = "Եղանակ։Ձմեռ";}
+         if(data.weatherIndex == 1 ) { Body.style.background = "#b8e08d"; WeatherTxT.innerText = "Եղանակ։Գարուն";}
+         if(data.weatherIndex == 2 ) { Body.style.background = "#FFFE6F"; WeatherTxT.innerText = "Եղանակ։Ամառ";}
+         if(data.weatherIndex == 3 ) { Body.style.background = "#e59d34"; WeatherTxT.innerText = "Եղանակ։Աշուն";}
 
     }
 
