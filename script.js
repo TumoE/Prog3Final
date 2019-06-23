@@ -122,10 +122,7 @@ function setup() {
         socket.emit("AddNewRock");
     }
 
-    // this.mouseClicked = function() {
-    //     var MouseObj = {Y:mouseY,X:mouseX}
-    //     socket.emit("RemoveWithMouse",MouseObj);
-    //   }
+
 }
 
 

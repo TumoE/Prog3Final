@@ -1,5 +1,5 @@
 
-//! Requiring modules  --  START
+
 Grass = require("./modules/Grass.js");
 GrassEater = require("./modules/GrassEater.js");
 Predator = require("./modules/Predator.js")
@@ -7,10 +7,7 @@ Alien = require("./modules/Alien.js");
 Bomb = require("./modules/Bomb.js");
 Rock = require("./modules/Rock.js");
 random = require('./modules/random');
-//! Requiring modules  --  END
 
-
-//! Setting global arrays  --  START
 grassArr = [];
 grassEaterArr = [];
 predatorArr = [];
@@ -19,7 +16,7 @@ bombArr = [];
 rockArr = [];
 matrix = [];
 
-//! Setting global arrays  -- END
+
 
 
  grassHashiv = 0;
@@ -32,7 +29,6 @@ matrix = [];
  weather = -1;
 
 
-//! Creating MATRIX -- START
 function matrixGenerator(matrixSize, grass, grassEater, predator, alien, bomb,rock) {
     for (let i = 0; i < matrixSize; i++) {
         matrix[i] = [];
@@ -313,17 +309,10 @@ function addNewRock(){
      let NewRock = new Rock(NewX,NewY);
      rockArr.push(NewRock);
 }
-
-// function RemoveWithMouse(MouseObj){
-//     console.log(MouseObj);
-//   // matrix[MouseObj.X][MouseObj.Y] = 0;
-// }
-
 io.on('connection', function (socket) {
     socket.on("matrixy pokhi",reverseFunc)
     socket.on("RemoveAllRocks",removeRocks)
     socket.on("AddRandomGrassEater",AddRandomGrassEater)
     socket.on("AddNewRock",addNewRock)
-   // socket.on("RemoveWithMouse",RemoveWithMouse)
  });
  
