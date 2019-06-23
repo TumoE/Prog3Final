@@ -83,7 +83,7 @@ module.exports = class Allen extends LiveForm {
                 alienArr.splice(i,1);           
                 break;
             }
-           console.log("EndGame");
+         //  console.log("EndGame");
        // this.time =0;
     }
 

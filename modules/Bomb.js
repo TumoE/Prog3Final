@@ -52,7 +52,7 @@ module.exports = class Bomb extends LiveForm {
                 break;
             }
             this.time = 0;
-            console.log("Boom");
+            //console.log("Boom");
         }
     }
 

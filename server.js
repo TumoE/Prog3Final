@@ -257,7 +257,7 @@ RandomRockMatrix();
 function weatherChange(){
     weather++;
     if(weather > 3) weather = 0;
-    console.log(weather);
+   // console.log(weather);
     setTimeout(weatherChange, 10000);
 }
 weatherChange();
